@@ -10,6 +10,7 @@ dwm is an extremely fast, small, and dynamic window manager for X.
 + pertag
 + monitorrules
 + cfacts
++ uselessgap (removed 'dont gap if one window exists')
 
 rest of original README:
 ```
