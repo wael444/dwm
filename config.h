@@ -7,9 +7,9 @@ static const int swallowfloating    = 0;        /* 1 means swallow floating wind
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=9:Medium" };
-static const char col_bg[]          = "#1d2021";
-static const char col_gr[]          = "#3c3836";
-static const char col_fg[]          = "#ebdbb2";
+static const char col_bg[]          = "#000000";
+static const char col_gr[]          = "#202020";
+static const char col_fg[]          = "#dfdfdf";
 static const char *colors[][3]      = {
 	/*                 fg      bg      border   */
 	[SchemeNorm]   = { col_fg, col_bg, col_bg },
@@ -30,6 +30,13 @@ static const Rule rules[] = {
 	{ "st-256color", NULL,     "run",           0,         0,   1,          1,           1,        -1 },
 	{ NULL,          NULL,     "Event Tester",  0,        -1,   0,          0,           1,        -1 }, /* xev */
 };
+
+static const MonitorRule monrules[] = {
+	/* monitor  tag  layout  mfact  nmaster  showbar  topbar */
+	{  1,       -1,  2,      -1,    -1,      -1,      -1     }, // use a different layout for the second monitor
+	{  -1,      -1,  0,      -1,    -1,      -1,      -1     }, // default
+};
+
 
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
