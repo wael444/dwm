@@ -7,6 +7,8 @@ dwm is an extremely fast, small, and dynamic window manager for X.
 + placemouse
 + respectsizehints rule
 + fakefullscreenclient
++ pertag
++ monitorrules
 
 rest of original README:
 ```
