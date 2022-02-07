@@ -7,15 +7,17 @@ static const unsigned int gappx    = 16;
 
 /* swallow, systray */
 static const int swallowfloating         = 0;
-static const unsigned int systraypinning = 2; /* pin on mon f+1 */
+static const unsigned int systraypinning = 1; /* pin on mon f+1 */
 static const unsigned int systrayspacing = 2;
 static const int systraypinningfailfirst = 1;
 static const int showsystray             = 1;
 
 /* bar */
-static const int showbar   = 1;
-static const int topbar    = 0;
-static const char *fonts[] = { "JetBrainsMono Nerd Font:size=9:Medium" };
+static const int showbar     = 1;
+static const int topbar      = 0;
+static const int horizpadbar = 2;
+static const int vertpadbar  = 8;
+static const char *fonts[]   = { "JetBrainsMono Nerd Font:size=9:Medium" };
 
 /* colors */
 static const char col_bg[]     = "#000000";
