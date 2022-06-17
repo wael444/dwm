@@ -1,27 +1,27 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 2;
-static const unsigned int snap      = 16;
-static const unsigned int gappx     = 16;
+static const unsigned int borderpx = 2;
+static const unsigned int snap     = 16;
+static const unsigned int gappx    = 16;
 
 /* swallow, systray */
-static const int swallowfloating    = 0;
-static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
-static const unsigned int systrayspacing = 2;   /* systray spacing */
-static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, 0: display systray on the last monitor*/
-static const int showsystray        = 1;        /* 0 means no systray */
+static const int swallowfloating         = 0;
+static const unsigned int systraypinning = 2; /* pin on mon f+1 */
+static const unsigned int systrayspacing = 2;
+static const int systraypinningfailfirst = 1;
+static const int showsystray             = 1;
 
 /* bar */
-static const int showbar            = 1;
-static const int topbar             = 0;
-static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=9:Medium" };
+static const int showbar   = 1;
+static const int topbar    = 0;
+static const char *fonts[] = { "JetBrainsMono Nerd Font:size=9:Medium" };
 
 /* colors */
-static const char col_bg[]          = "#000000";
-static const char col_gr[]          = "#202020";
-static const char col_fg[]          = "#dfdfdf";
-static const char *colors[][3]      = {
+static const char col_bg[]     = "#000000";
+static const char col_gr[]     = "#202020";
+static const char col_fg[]     = "#dfdfdf";
+static const char *colors[][3] = {
 	/*                 fg      bg      border   */
 	[SchemeNorm]   = { col_fg, col_bg, col_bg },
 	[SchemeSel]    = { col_fg, col_gr, col_gr },
