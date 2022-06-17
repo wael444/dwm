@@ -281,6 +281,7 @@ static void tile(Monitor *);
 static void togglebar(const Arg *arg);
 static void togglefakefullscreen(const Arg *arg);
 static void togglefloating(const Arg *arg);
+static void togglesystray(const Arg *arg);
 static void toggletag(const Arg *arg);
 static void toggleview(const Arg *arg);
 static void unfocus(Client *c, int setfocus);
@@ -964,7 +965,7 @@ drawstatusbar(Monitor *m, int bh, char* stext) {
 		isCode = 0;
 	text = p;
 
-	w += horizpadbar; /* 1px padding on both sides */
+	w += horizpadbar * 4; /* 1px padding on both sides */
 	ret = x = m->ww - w;
 	x = m->ww - w - getsystraywidth();
 
@@ -972,7 +973,7 @@ drawstatusbar(Monitor *m, int bh, char* stext) {
 	drw->scheme[ColFg] = scheme[SchemeNorm][ColFg];
 	drw->scheme[ColBg] = scheme[SchemeNorm][ColBg];
 	drw_rect(drw, x, 0, w, bh, 1, 1);
-	x += horizpadbar / 2;
+	x += horizpadbar * 2;
 
 	/* process status text */
 	i = -1;
@@ -2569,6 +2570,16 @@ togglefloating(const Arg *arg)
 		resize(selmon->sel, selmon->sel->x, selmon->sel->y,
 			selmon->sel->w, selmon->sel->h, 0);
 	arrange(selmon);
+}
+
+void
+togglesystray(const Arg *arg)
+{
+	if (showsystray)
+		XUnmapWindow(dpy, systray->win);
+	showsystray = !showsystray;
+	updatesystray();
+	updatestatus();
 }
 
 void

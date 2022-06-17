@@ -10,12 +10,12 @@ static const int swallowfloating         = 0;
 static const unsigned int systraypinning = 1; /* pin on mon f+1 */
 static const unsigned int systrayspacing = 2;
 static const int systraypinningfailfirst = 1;
-static const int showsystray             = 1;
+static int showsystray                   = 0;
 
 /* bar */
 static const int showbar     = 1;
 static const int topbar      = 0;
-static const int horizpadbar = 2;
+static const int horizpadbar = 4;
 static const int vertpadbar  = 8;
 static const char *fonts[]   = { "JetBrainsMono Nerd Font:size=9:Medium" };
 
@@ -77,6 +77,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask, XK_s,         setcfact,             {.f = +0.25} },
 	{ MODKEY|ShiftMask, XK_w,         setcfact,             {.f = -0.25} },
 	{ MODKEY,           XK_b,         togglebar,            {0} },
+	{ MODKEY,           XK_z,         togglesystray,        {0} },
 	{ MODKEY|ShiftMask, XK_c,         killclient,           {0} },
 	{ MODKEY|ShiftMask, XK_q,         quit,                 {0} },
 	{ MODKEY|ShiftMask, XK_r,         quit,                 {1} }, 
