@@ -20,13 +20,22 @@ static const int vertpadbar  = 8;
 static const char *fonts[]   = { "JetBrainsMono Nerd Font:size=9:Medium" };
 
 /* colors */
-static const char col_bg[]     = "#000000";
-static const char col_gr[]     = "#202020";
-static const char col_fg[]     = "#dfdfdf";
-static const char *colors[][3] = {
+static char col_bg[]     = "#000000";
+static char col_gr[]     = "#404040";
+static char col_ac[]     = "#005577";
+static char col_fg[]     = "#dfdfdf";
+static char *colors[][3] = {
 	/*                 fg      bg      border   */
 	[SchemeNorm]   = { col_fg, col_bg, col_bg },
 	[SchemeSel]    = { col_fg, col_gr, col_gr },
+};
+
+/* xresources */
+ResourcePref resources[] = {
+		{ "background",  STRING,  &col_bg },
+		{ "color8",      STRING,  &col_gr },
+		{ "foreground",  STRING,  &col_fg },
+		{ "color4",      STRING,  &col_ac },
 };
 
 /* tagging */
@@ -78,6 +87,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask, XK_w,         setcfact,             {.f = -0.25} },
 	{ MODKEY,           XK_b,         togglebar,            {0} },
 	{ MODKEY,           XK_z,         togglesystray,        {0} },
+	{ MODKEY,           XK_x,         reload_xresources,    {0} },
 	{ MODKEY|ShiftMask, XK_c,         killclient,           {0} },
 	{ MODKEY|ShiftMask, XK_q,         quit,                 {0} },
 	{ MODKEY|ShiftMask, XK_r,         quit,                 {1} }, 
