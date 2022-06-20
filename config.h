@@ -16,8 +16,8 @@ static int showsystray                   = 0;
 static const int showbar     = 1;
 static const int topbar      = 0;
 static const int horizpadbar = 4;
-static const int vertpadbar  = 8;
-static const char *fonts[]   = { "JetBrainsMono Nerd Font:size=9:Medium" };
+static const int vertpadbar  = 6;
+static const char *fonts[]   = { "monospace:size=9:Medium" };
 
 /* colors */
 static char col_bg[]     = "#000000";
