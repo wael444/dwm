@@ -21,18 +21,25 @@ static const char *fonts[]   = { "monospace:size=9:Medium" };
 
 /* colors */
 static char col_bg[]     = "#000000";
-static char col_gr[]     = "#404040";
+static char col_bl[]     = "#404040";
+static char col_gr[]     = "#606060";
 static char col_ac[]     = "#005577";
 static char col_fg[]     = "#dfdfdf";
 static char *colors[][3] = {
 	/*                 fg      bg      border   */
-	[SchemeNorm]   = { col_fg, col_bg, col_bg },
-	[SchemeSel]    = { col_fg, col_gr, col_gr },
+	[SchemeNorm]    = { col_fg, col_bg, col_bg },
+	[SchemeTitle]   = { col_fg, col_bg, NULL   },
+	[SchemeSel]     = { col_ac, col_bg, col_gr },
+	[SchemeTagNorm] = { col_gr, col_bg, NULL },
+	[SchemeTagSel]  = { col_fg, col_bg, NULL },
 };
+
+static char *scolor[] = { col_bg, col_bl, col_gr, col_ac, col_fg };
 
 /* xresources */
 ResourcePref resources[] = {
 		{ "background",  STRING,  &col_bg },
+		{ "color0",      STRING,  &col_bl },
 		{ "color8",      STRING,  &col_gr },
 		{ "foreground",  STRING,  &col_fg },
 		{ "color4",      STRING,  &col_ac },
@@ -70,6 +77,8 @@ static const Layout layouts[]   = {
 /* internal keyboard keybindings */
 static Key keys[] = {
 	/* key mask         key           function              args */
+	{ 0,XF86XK_AudioRaiseVolume,      spawn,                LAUNCHARG("volctl", "+10%") },
+	{ 0,XF86XK_AudioLowerVolume,      spawn,                LAUNCHARG("volctl", "-10%") },
 	{ MODKEY,           XK_space,     spawn,                LAUNCHARG("m", "run") },
 	{ MODKEY,           XK_Return,    spawn,                LAUNCH("st") },
 	{ MODKEY,           XK_a,         focusstack,           {.i = +1 } },
@@ -77,7 +86,7 @@ static Key keys[] = {
 	{ MODKEY,           XK_w,         incnmaster,           {.i = +1 } },
 	{ MODKEY,           XK_s,         incnmaster,           {.i = -1 } },
 	{ MODKEY,           XK_f,         togglefloating,       {0} },
-	{ MODKEY|ShiftMask, XK_f,         togglefakefullscreen, {0} },
+	{ MODKEY,           XK_g,         togglefakefullscreen, {0} },
 	{ MODKEY,           XK_BackSpace, zoom,                 {0} },
 	{ MODKEY,           XK_v,         focusmon,             {.i = +1 } },
 	{ MODKEY,           XK_c,         tagmon,               {.i = +1 } },

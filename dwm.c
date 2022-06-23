@@ -42,6 +42,7 @@
 #endif /* XINERAMA */
 #include <X11/Xft/Xft.h>
 #include <X11/Xlib-xcb.h>
+#include <X11/XF86keysym.h>
 #include <xcb/res.h>
 #ifdef __OpenBSD__
 #include <sys/sysctl.h>
@@ -85,7 +86,7 @@
 
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
-enum { SchemeNorm, SchemeSel }; /* color schemes */
+enum { SchemeNorm, SchemeSel, SchemeTitle, SchemeTagNorm, SchemeTagSel }; /* color schemes */
 enum { NetSupported, NetSystemTray, NetSystemTrayOP, NetSystemTrayOrientation, NetWMCheck,
 	   NetSystemTrayOrientationHorz, NetWMName, NetWMState, NetWMFullscreen, NetActiveWindow,
 	   NetWMWindowType, NetWMWindowTypeDialog, NetClientList, NetClientInfo, NetWMWindowTypeDock, NetLast }; /* EWMH atoms */
@@ -1023,6 +1024,12 @@ drawstatusbar(Monitor *m, int bh, char* stext) {
 					buf[7] = '\0';
 					drw_clr_create(drw, &drw->scheme[ColBg], buf);
 					i += 7;
+				} else if (text[i] == 'C') {
+					int c = atoi(text + ++i);
+					drw_clr_create(drw, &drw->scheme[ColFg], scolor[c]);
+				} else if (text[i] == 'B') {
+					int c = atoi(text + ++i);
+					drw_clr_create(drw, &drw->scheme[ColBg], scolor[c]);
 				} else if (text[i] == 'd') {
 					drw->scheme[ColFg] = scheme[SchemeNorm][ColFg];
 					drw->scheme[ColBg] = scheme[SchemeNorm][ColBg];
@@ -1090,7 +1097,7 @@ drawbar(Monitor *m)
 		if(!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
 			continue;
 		w = TEXTW(tags[i]);
-		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
+		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeTagSel : SchemeTagNorm]);
 		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
 		x += w;
 	}
@@ -1100,7 +1107,7 @@ drawbar(Monitor *m)
 
 	if ((w = m->ww - tw - stw - x) > bh) {
 		if (m->sel) {
-			drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
+			drw_setscheme(drw, scheme[m == selmon ? SchemeTitle : SchemeNorm]);
 			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
 			if (m->sel->isfloating)
 				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
