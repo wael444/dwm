@@ -14,6 +14,8 @@ dwm is an extremely fast, small, and dynamic window manager for X.
 + preserveonrestart
 + status2d
 + hide vacant tags
++ xresources
++ alwayscenter
 
 rest of original README:
 ```
